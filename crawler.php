@@ -9,7 +9,7 @@ include("simple_html_dom.php")
 <?php
 
 //Connect to database "testdb"
-$m = new MongoClient();
+$m = new MongoClient("test:test@ds013898.mongolab.com:13898/yukseljunk_searchengine");
 $db = $m->testdb;
 //create a collection for that database
 $collection =  $db->createCollection("mycol");
@@ -46,13 +46,13 @@ $page_doc = [
 
 $sub1_doc = [
 
-"title" => "main page",
+"title" => "sub page 1",
 "content" => $pages[4]
 ];
 
 $sub2_doc = [
 
-"title" => "main page",
+"title" => "sub page 2",
 "content" => $pages[5]
 ]; 
 
