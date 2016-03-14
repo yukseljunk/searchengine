@@ -1,5 +1,6 @@
 <?php
 include("simple_html_dom.php")
+
 ?>
 
 <p>Other text </p>
@@ -8,8 +9,14 @@ include("simple_html_dom.php")
 
 <?php
 
+//make a list of pages that have already been visited
+
+//dont retrieve anchors from that page if it exists in the array
+
+
+
 //Connect to database "testdb"
-$m = new MongoClient("test:test@ds013898.mongolab.com:13898/yukseljunk_searchengine");
+$m = new MongoClient("mongodb://test:test@ds013898.mongolab.com:13898/yukseljunk_searchengine");
 $db = $m->testdb;
 //create a collection for that database
 $collection =  $db->createCollection("mycol");
@@ -120,11 +127,13 @@ return $links;
 
 
 
-/*
 
-*Incomplete, needs debugging
+
+//Incomplete, needs debugging
 
 function getContent($root_page, $depth){
+
+//find the domain of the $root_page and pass it to the recursive funciton getPageContent
 
 $curl = curl_init();
 
@@ -141,6 +150,11 @@ return $all_pages;
 
 function getPageContent($html, $curl, $current_page, $depth, $all_pages){
 
+//check if the url of $current_page is already in $all_pages, if it is then return;
+
+//check if the domain of the $current is the same as the paramter $domain
+
+
 echo $depth;
 if($depth == 0){
 	return null;
@@ -150,6 +164,7 @@ $page_content = getPageHtml($current_page, $curl);
 
 if($page_content != false){
 
+//if page content is already in array, then return it
 $all_pages[] = $page_content;
 
 
